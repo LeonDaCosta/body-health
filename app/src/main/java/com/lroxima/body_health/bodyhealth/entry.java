@@ -9,7 +9,7 @@ public class entry {
     public static int KG = 1;
     public static int POUNDS = 2;
     public static int STONES = 3;
-    
+
 
     public float getWeight() {
         return weight;
