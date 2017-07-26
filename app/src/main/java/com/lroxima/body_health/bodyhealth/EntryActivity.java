@@ -21,16 +21,30 @@ public class EntryActivity extends AppCompatActivity {
         final EditText boneText = (EditText) findViewById(R.id.editBone);
         Button btn = (Button) findViewById(R.id.button);
 
-
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Entry entry = new Entry();
+
                 Log.d("ETY", weightText.getText().toString());
                 Log.d("ETY", bmiText.getText().toString());
                 Log.d("ETY", bodyFatText.getText().toString());
                 Log.d("ETY", waterText.getText().toString());
                 Log.d("ETY", boneText.getText().toString());
                 Log.d("ETY","testing");
+
+                entry.setWeight( Float.parseFloat( weightText.getText().toString() ) );
+                entry.setBmi( Float.parseFloat( bmiText.getText().toString() ) );
+                entry.setBodyFat( Float.parseFloat( bodyFatText.getText().toString() ) );
+                entry.setWater( Float.parseFloat( waterText.getText().toString() ) );
+                entry.setBone( Float.parseFloat( boneText.getText().toString() ) );
+
+                Log.d("ETY", String.valueOf(entry.getWeight()));
+                Log.d("ETY", String.valueOf(entry.getBmi()));
+                Log.d("ETY", String.valueOf(entry.getBodyFat()));
+                Log.d("ETY", String.valueOf(entry.getWater()));
+                Log.d("ETY", String.valueOf(entry.getBone()));
             }
         });
     }
