@@ -4,15 +4,31 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class database extends SQLiteOpenHelper {
+public class Database extends SQLiteOpenHelper {
 
+    // Database
     private static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "sample_database";
+
+    // Table
+    public static final String TABLE_NAME = "body_data";
+    public static final String KEY_ID = "id";
+    public static final String KEY_DATE = "date";
+    public static final String KEY_WEIGHT_METRIC = "weight_metric";
+    public static final String KEY_WEIGHT = "weight";
+    public static final String KEY_BODY_FAT = "body_fat";
+    public static final String KEY_WATER = "water";
+    public static final String KEY_BONE = "bone";
+    public static final String KEY_BMI = "bmi";
+
     private static final String DICTIONARY_TABLE_CREATE =
-            "CREATE TABLE " + DATABASE_NAME  + " ( TEXT,  TEXT);";
+            "CREATE TABLE " + TABLE_NAME  + " ( " + KEY_ID + " INTEGER PRIMARY KEY, " +
+                    KEY_DATE  + " DATE, " + KEY_WEIGHT_METRIC + " INT UNSIGNED, " +
+                    KEY_WEIGHT + " INT UNSIGNED, " + KEY_BODY_FAT + " INT UNSIGNED, " +
+                    KEY_WATER + " INT UNSIGNED, " + KEY_BONE + " INT UNSIGNED, " +
+                    KEY_BODY_FAT + " INT UNSIGNED,);";
 
-
-    public database(Context context) {
+    public Database(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
