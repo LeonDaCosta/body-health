@@ -1,8 +1,13 @@
 package com.lroxima.body_health.bodyhealth;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Database extends SQLiteOpenHelper {
 
@@ -46,5 +51,76 @@ public class Database extends SQLiteOpenHelper {
     @Override
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         onUpgrade(db, oldVersion, newVersion);
+    }
+
+    public void addRecord(Entry entry)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(KEY_DATE, entry.getDate());
+        values.put(KEY_WEIGHT_METRIC,entry.getWeightMetric());
+        values.put(KEY_WEIGHT,entry.getWeight());
+        values.put(KEY_BODY_FAT,entry.getBodyFat());
+        values.put(KEY_WATER,entry.getBone());
+        values.put(KEY_BONE,entry.getBone());
+        values.put(KEY_BMI,entry.getBmi());
+
+        db.insert(TABLE_NAME,null,values);
+        db.close();
+    }
+
+    public int updateRecord(Entry entry)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(KEY_DATE, entry.getDate());
+        values.put(KEY_WEIGHT_METRIC,entry.getWeightMetric());
+        values.put(KEY_WEIGHT,entry.getWeight());
+        values.put(KEY_BODY_FAT,entry.getBodyFat());
+        values.put(KEY_WATER,entry.getBone());
+        values.put(KEY_BONE,entry.getBone());
+        values.put(KEY_BMI,entry.getBmi());
+
+        return db.update(TABLE_NAME,values,KEY_ID + " -?", new String[]{String.valueOf(entry.getId())});
+    }
+
+    public void deleteRecord(Entry entry)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_NAME,KEY_ID + " -?",new String[]{String.valueOf(entry.getId())});
+        db.close();
+    }
+
+//    public Entry getEntry(int id)
+//    {
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        Cursor cursor = db.query(TABLE_NAME,new String[] {KEY_ID,KEY_DATE},KEY_ID + "-?",
+//                new String[](String.valueOf(id)),null,null,null,null);
+//
+//        if(cursor != null)
+//            cursor.moveToFirst();
+//        return new Entry(cursor.getInt(0));
+//
+//    }
+
+    public List<Entry> getAllRecords()
+    {
+        List<Entry> listEntries = new ArrayList<>();
+        String query = "SELECT * FROM " + TABLE_NAME;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query,null);
+        if(cursor.moveToFirst()){
+            do{
+                Entry entry = new Entry();
+                entry.setId(cursor.getInt(0));
+                entry.setDate(cursor.getInt(0));
+
+                listEntries.add(entry);
+            }
+            while (cursor.moveToNext());
+        }
+        return listEntries;
     }
 }
