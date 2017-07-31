@@ -1,15 +1,20 @@
 package com.lroxima.body_health.bodyhealth;
 
 
-public class entry {
+public class Entry {
+
+    // TODO refactor all to INT
 
     private float weight,bodyFat,water,bone,Bmi;
-    private int weightMetric;
+    private int weightMetric,date,id;
 
     public static int KG = 1;
     public static int POUNDS = 2;
     public static int STONES = 3;
 
+    public int getId() { return id; }
+
+    public void setId(int id) { this.id = id; }
 
     public float getWeight() {
         return weight;
@@ -58,4 +63,8 @@ public class entry {
     public void setWeightMetric(int weightMetric) {
         this.weightMetric = weightMetric;
     }
+
+    public int getDate() { return date; }
+
+    public void setDate(int date) { this.date = date; }
 }
