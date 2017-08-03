@@ -22,6 +22,7 @@ public class EntryActivity extends AppCompatActivity {
         Button btn = (Button) findViewById(R.id.button);
 
         btn.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
 
