@@ -23,6 +23,7 @@ public class EntryActivity extends AppCompatActivity {
 
         btn.setOnClickListener(new View.OnClickListener() {
 
+
             @Override
             public void onClick(View v) {
 
@@ -35,11 +36,11 @@ public class EntryActivity extends AppCompatActivity {
                 Log.d("ETY", boneText.getText().toString());
                 Log.d("ETY","testing");
 
-                entry.setWeight( Float.parseFloat( weightText.getText().toString() ) );
-                entry.setBmi( Float.parseFloat( bmiText.getText().toString() ) );
-                entry.setBodyFat( Float.parseFloat( bodyFatText.getText().toString() ) );
-                entry.setWater( Float.parseFloat( waterText.getText().toString() ) );
-                entry.setBone( Float.parseFloat( boneText.getText().toString() ) );
+                //entry.setWeight( Float.parseFloat( weightText.getText().toString() ) );
+                //entry.setBmi( Float.parseFloat( bmiText.getText().toString() ) );
+                //entry.setBodyFat( Float.parseFloat( bodyFatText.getText().toString() ) );
+                //entry.setWater( Float.parseFloat( waterText.getText().toString() ) );
+                //entry.setBone( Float.parseFloat( boneText.getText().toString() ) );
 
                 Log.d("ETY", String.valueOf(entry.getWeight()));
                 Log.d("ETY", String.valueOf(entry.getBmi()));
