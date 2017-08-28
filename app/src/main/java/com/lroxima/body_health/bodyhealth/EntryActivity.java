@@ -2,12 +2,15 @@ package com.lroxima.body_health.bodyhealth;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 public class EntryActivity extends AppCompatActivity {
+
+    private Entry entry;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,15 +22,20 @@ public class EntryActivity extends AppCompatActivity {
         final EditText bodyFatText = (EditText) findViewById(R.id.editBodyFat);
         final EditText waterText = (EditText) findViewById(R.id.editWater);
         final EditText boneText = (EditText) findViewById(R.id.editBone);
-        Button btn = (Button) findViewById(R.id.button);
+        final Button btn = (Button) findViewById(R.id.button);
+
+        weightText.setFilters(new InputFilter[] {new DecimalDigitsInputFilter(4,2)});
+        bmiText.setFilters(new InputFilter[] {new DecimalDigitsInputFilter(3,1)});
+        bodyFatText.setFilters(new InputFilter[] {new DecimalDigitsInputFilter(3,1)});
+        waterText.setFilters(new InputFilter[] {new DecimalDigitsInputFilter(3,1)});
+        boneText.setFilters(new InputFilter[] {new DecimalDigitsInputFilter(3,1)});
 
         btn.setOnClickListener(new View.OnClickListener() {
-
 
             @Override
             public void onClick(View v) {
 
-                Entry entry = new Entry();
+                entry = new Entry();
 
                 Log.d("ETY", weightText.getText().toString());
                 Log.d("ETY", bmiText.getText().toString());
@@ -36,11 +44,11 @@ public class EntryActivity extends AppCompatActivity {
                 Log.d("ETY", boneText.getText().toString());
                 Log.d("ETY","testing");
 
-                //entry.setWeight( Float.parseFloat( weightText.getText().toString() ) );
-                //entry.setBmi( Float.parseFloat( bmiText.getText().toString() ) );
-                //entry.setBodyFat( Float.parseFloat( bodyFatText.getText().toString() ) );
-                //entry.setWater( Float.parseFloat( waterText.getText().toString() ) );
-                //entry.setBone( Float.parseFloat( boneText.getText().toString() ) );
+                entry.setWeight( Float.parseFloat( weightText.getText().toString() ) );
+                entry.setBmi( Float.parseFloat( bmiText.getText().toString() ) );
+                entry.setBodyFat( Float.parseFloat( bodyFatText.getText().toString() ) );
+                entry.setWater( Float.parseFloat( waterText.getText().toString() ) );
+                entry.setBone( Float.parseFloat( boneText.getText().toString() ) );
 
                 Log.d("ETY", String.valueOf(entry.getWeight()));
                 Log.d("ETY", String.valueOf(entry.getBmi()));
@@ -49,5 +57,7 @@ public class EntryActivity extends AppCompatActivity {
                 Log.d("ETY", String.valueOf(entry.getBone()));
             }
         });
+
     }
+
 }

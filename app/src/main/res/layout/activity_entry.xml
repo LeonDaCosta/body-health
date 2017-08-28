@@ -5,8 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.lroxima.body_health.bodyhealth.EntryActivity"
-    tools:layout_editor_absoluteY="81dp"
-    tools:layout_editor_absoluteX="0dp"
     android:orientation="vertical">
 
     <Button
@@ -34,7 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="BMI"
-        app:layout_constraintTop_toBottomOf="@+id/textViewBone"
+        android:paddingTop="@dimen/fab_margin"
         />
 
     <EditText
@@ -51,7 +49,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Body Fat %"
-        app:layout_constraintTop_toBottomOf="@+id/metric"
+        android:paddingTop="@dimen/fab_margin"
         />
 
     <EditText
@@ -67,6 +65,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Water %"
+        android:paddingTop="@dimen/fab_margin"
         />
 
     <EditText
@@ -83,6 +82,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Bone %"
+        android:paddingTop="@dimen/fab_margin"
         />
 
     <EditText
@@ -92,6 +92,7 @@
         android:ems="10"
         android:hint="Bone"
         android:inputType="numberDecimal"
+        android:paddingTop="@dimen/fab_margin"
         />
 
     <Button
@@ -99,6 +100,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="ADD"
+        android:paddingTop="@dimen/fab_margin"
         />
 
 </LinearLayout>

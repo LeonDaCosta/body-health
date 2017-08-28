@@ -2,7 +2,8 @@ package com.lroxima.body_health.bodyhealth;
 
 public class Entry {
 
-    private int weight,bodyFat,water,bone,Bmi,weightMetric,date,id;
+    private int date,id;
+    private float weight,bodyFat,water,bone,Bmi,weightMetric;
 
     public static int KG = 1;
     public static int POUNDS = 2;
@@ -12,51 +13,51 @@ public class Entry {
 
     public void setId(int id) { this.id = id; }
 
-    public int getWeight() {
+    public float getWeight() {
         return weight;
     }
 
-    public void setWeight(int weight) {
+    public void setWeight(float weight) {
         this.weight = weight;
     }
 
-    public int getBodyFat() {
+    public float getBodyFat() {
         return bodyFat;
     }
 
-    public void setBodyFat(int bodyFat) {
+    public void setBodyFat(float bodyFat) {
         this.bodyFat = bodyFat;
     }
 
-    public int getWater() {
+    public float getWater() {
         return water;
     }
 
-    public void setWater(int water) {
+    public void setWater(float water) {
         this.water = water;
     }
 
-    public int getBone() {
+    public float getBone() {
         return bone;
     }
 
-    public void setBone(int bone) {
+    public void setBone(float bone) {
         this.bone = bone;
     }
 
-    public int getBmi() {
+    public float getBmi() {
         return Bmi;
     }
 
-    public void setBmi(int bmi) {
+    public void setBmi(float bmi) {
         Bmi = bmi;
     }
 
-    public int getWeightMetric() {
+    public float getWeightMetric() {
         return weightMetric;
     }
 
-    public void setWeightMetric(int weightMetric) {
+    public void setWeightMetric(float weightMetric) {
         this.weightMetric = weightMetric;
     }
 
