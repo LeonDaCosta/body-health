@@ -13,25 +13,25 @@ public class Database extends SQLiteOpenHelper {
 
     // Database
     private static final int DATABASE_VERSION = 1;
-    public static final String DATABASE_NAME = "sample_database";
+    public static final String DATABASE_NAME = "sample_database.db";
 
     // Table
-    public static final String TABLE_NAME = "body_data";
-    public static final String KEY_ID = "id";
-    public static final String KEY_DATE = "date";
-    public static final String KEY_WEIGHT_METRIC = "weight_metric";
-    public static final String KEY_WEIGHT = "weight";
-    public static final String KEY_BODY_FAT = "body_fat";
-    public static final String KEY_WATER = "water";
-    public static final String KEY_BONE = "bone";
-    public static final String KEY_BMI = "bmi";
+    private static final String TABLE_NAME = "body_data";
+    private static final String KEY_ID = "id";
+    private static final String KEY_DATE = "date";
+    private static final String KEY_WEIGHT_METRIC = "weight_metric";
+    private static final String KEY_WEIGHT = "weight";
+    private static final String KEY_BODY_FAT = "body_fat";
+    private static final String KEY_WATER = "water";
+    private static final String KEY_BONE = "bone";
+    private static final String KEY_BMI = "bmi";
 
     private static final String DICTIONARY_TABLE_CREATE =
             "CREATE TABLE " + TABLE_NAME  + " ( " + KEY_ID + " INTEGER PRIMARY KEY, " +
-                    KEY_DATE  + " DATE, " + KEY_WEIGHT_METRIC + " INT UNSIGNED, " +
-                    KEY_WEIGHT + " INT UNSIGNED, " + KEY_BODY_FAT + " INT UNSIGNED, " +
-                    KEY_WATER + " INT UNSIGNED, " + KEY_BONE + " INT UNSIGNED, " +
-                    KEY_BODY_FAT + " INT UNSIGNED,);";
+                    KEY_DATE  + " DATE, " + KEY_WEIGHT_METRIC + " REAL UNSIGNED, " +
+                    KEY_WEIGHT + " INT UNSIGNED, " + KEY_BODY_FAT + " REAL UNSIGNED, " +
+                    KEY_WATER + " REAL UNSIGNED, " + KEY_BONE + " REAL UNSIGNED, " +
+                    KEY_BODY_FAT + " REAL UNSIGNED,);";
 
     public Database(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -93,17 +93,6 @@ public class Database extends SQLiteOpenHelper {
         db.close();
     }
 
-//    public Entry getEntry(int id)
-//    {
-//        SQLiteDatabase db = this.getReadableDatabase();
-//        Cursor cursor = db.query(TABLE_NAME,new String[] {KEY_ID,KEY_DATE},KEY_ID + "-?",
-//                new String[](String.valueOf(id)),null,null,null,null);
-//
-//        if(cursor != null)
-//            cursor.moveToFirst();
-//        return new Entry(cursor.getInt(0));
-//
-//    }
 
     public List<Entry> getAllRecords()
     {
@@ -122,5 +111,25 @@ public class Database extends SQLiteOpenHelper {
             while (cursor.moveToNext());
         }
         return listEntries;
+    }
+
+
+    public String dbToString() {
+        String dbSting = "";
+        SQLiteDatabase db = this.getWritableDatabase();
+        String qry = "SELECT * FROM " + TABLE_NAME + " WHERE 1";
+
+        //Cur point to a location in your results
+        Cursor c = db.rawQuery(qry,null);
+        c.moveToFirst();
+
+        while (!c.isAfterLast()) {
+            if(c.getString(c.getColumnIndex(KEY_ID)) != null) {
+                dbSting += c.getString(c.getColumnIndex(KEY_ID));
+                dbSting += "\n";
+            }
+        }
+        db.close();
+        return dbSting;
     }
 }
