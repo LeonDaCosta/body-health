@@ -1,5 +1,6 @@
 package com.lroxima.body_health.bodyhealth;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputFilter;
@@ -11,6 +12,9 @@ import android.widget.EditText;
 public class EntryActivity extends AppCompatActivity {
 
     private Entry entry;
+    Database dbHandler;
+    private Context context = this;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +33,8 @@ public class EntryActivity extends AppCompatActivity {
         bodyFatText.setFilters(new InputFilter[] {new DecimalDigitsInputFilter(3,1)});
         waterText.setFilters(new InputFilter[] {new DecimalDigitsInputFilter(3,1)});
         boneText.setFilters(new InputFilter[] {new DecimalDigitsInputFilter(3,1)});
+
+        dbHandler = new Database(context);
 
         btn.setOnClickListener(new View.OnClickListener() {
 
@@ -55,6 +61,9 @@ public class EntryActivity extends AppCompatActivity {
                 Log.d("ETY", String.valueOf(entry.getBodyFat()));
                 Log.d("ETY", String.valueOf(entry.getWater()));
                 Log.d("ETY", String.valueOf(entry.getBone()));
+
+                dbHandler.addRecord(entry);
+
             }
         });
 

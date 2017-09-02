@@ -29,9 +29,9 @@ public class Database extends SQLiteOpenHelper {
     private static final String DICTIONARY_TABLE_CREATE =
             "CREATE TABLE " + TABLE_NAME  + " ( " + KEY_ID + " INTEGER PRIMARY KEY, " +
                     KEY_DATE  + " DATE, " + KEY_WEIGHT_METRIC + " REAL UNSIGNED, " +
-                    KEY_WEIGHT + " INT UNSIGNED, " + KEY_BODY_FAT + " REAL UNSIGNED, " +
-                    KEY_WATER + " REAL UNSIGNED, " + KEY_BONE + " REAL UNSIGNED, " +
-                    KEY_BODY_FAT + " REAL UNSIGNED,);";
+                    KEY_WEIGHT + " INT UNSIGNED, " + KEY_BMI + " REAL UNSIGNED, " +
+                    KEY_BODY_FAT + " REAL UNSIGNED, " + KEY_WATER + " REAL UNSIGNED, " +
+                    KEY_BONE + " REAL UNSIGNEDgit );";
 
     public Database(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
