@@ -6,10 +6,6 @@ import android.text.Spanned;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * Created by ldacosta on 14/09/17.
- */
-
 public class DecimalDigitsInputFilter implements InputFilter {
 
     Pattern mPattern;

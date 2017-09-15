@@ -9,9 +9,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,9 +25,20 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         String[] items = {"Car","Bike","Van","Truck"};
-        ListAdapter itemAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,items);
+        //ListAdapter itemAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,items);
+        ListAdapter itemAdapter = new ItemAdapter(this,items);
         ListView itemListView = (ListView) findViewById(R.id.MainListView);
         itemListView.setAdapter(itemAdapter);
+
+        itemListView.setOnItemClickListener(
+               new AdapterView.OnItemClickListener(){
+                   @Override
+                   public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                       String item = String.valueOf(parent.getItemAtPosition(position));
+                       Toast.makeText(MainActivity.this, item, Toast.LENGTH_LONG).show();;
+                   }
+               }
+        );
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
