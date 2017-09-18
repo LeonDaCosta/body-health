@@ -1,6 +1,7 @@
 package com.lroxima.body_health.bodyhealth;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputFilter;
@@ -12,9 +13,8 @@ import android.widget.EditText;
 public class EntryActivity extends AppCompatActivity {
 
     private Entry entry;
-    Database dbHandler;
+    private Database dbHandler;
     private Context context = this;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +63,8 @@ public class EntryActivity extends AppCompatActivity {
                 Log.d("ETY", String.valueOf(entry.getBone()));
 
                 dbHandler.addRecord(entry);
+
+                startActivity(new Intent(EntryActivity.this, MainActivity.class));
 
             }
         });

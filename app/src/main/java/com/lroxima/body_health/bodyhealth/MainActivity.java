@@ -1,5 +1,6 @@
 package com.lroxima.body_health.bodyhealth;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -17,12 +18,17 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+    private Database dbHandler;
+    //private Context context = this;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        //dbHandler = new Database(context);
 
         String[] items = {"Car","Bike","Van","Truck"};
         //ListAdapter itemAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,items);
@@ -35,10 +41,12 @@ public class MainActivity extends AppCompatActivity {
                    @Override
                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                        String item = String.valueOf(parent.getItemAtPosition(position));
-                       Toast.makeText(MainActivity.this, item, Toast.LENGTH_LONG).show();;
+                       Toast.makeText(MainActivity.this, item, Toast.LENGTH_LONG).show();
                    }
                }
         );
+
+        //Toast.makeText(MainActivity.this, dbHandler.dbToString(), Toast.LENGTH_LONG).show();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
