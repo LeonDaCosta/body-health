@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class EntryActivity extends AppCompatActivity {
 
@@ -62,7 +63,7 @@ public class EntryActivity extends AppCompatActivity {
                 Log.d("ETY", String.valueOf(entry.getWater()));
                 Log.d("ETY", String.valueOf(entry.getBone()));
 
-                dbHandler.addRecord(entry);
+                Toast.makeText(EntryActivity.this, "Entry Added", Toast.LENGTH_SHORT).show();
 
                 startActivity(new Intent(EntryActivity.this, MainActivity.class));
 

@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //dbHandler = new Database(context);
+        dbHandler = new Database(this);
 
         String[] items = {"Car","Bike","Van","Truck"};
         //ListAdapter itemAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,items);
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                }
         );
 
-        //Toast.makeText(MainActivity.this, dbHandler.dbToString(), Toast.LENGTH_LONG).show();
+        Toast.makeText(MainActivity.this, dbHandler.dbToString(), Toast.LENGTH_LONG).show();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

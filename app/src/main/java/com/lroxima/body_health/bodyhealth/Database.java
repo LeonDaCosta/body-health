@@ -72,6 +72,8 @@ public class Database extends SQLiteOpenHelper {
 
     public int updateRecord(Entry entry)
     {
+        int result;
+
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
@@ -83,7 +85,11 @@ public class Database extends SQLiteOpenHelper {
         values.put(KEY_BONE,entry.getBone());
         values.put(KEY_BMI,entry.getBmi());
 
-        return db.update(TABLE_NAME,values,KEY_ID + " -?", new String[]{String.valueOf(entry.getId())});
+        result = db.update(TABLE_NAME,values,KEY_ID + " -?", new String[]{String.valueOf(entry.getId())});
+
+        db.close();
+
+        return result;
     }
 
     public void deleteRecord(Entry entry)
@@ -115,20 +121,16 @@ public class Database extends SQLiteOpenHelper {
 
 
     public String dbToString() {
-        String dbSting = "";
+        String dbSting = "Entries: ";
         SQLiteDatabase db = this.getWritableDatabase();
-        String qry = "SELECT * FROM " + TABLE_NAME + " WHERE 1";
+        String qry = "SELECT count(*) FROM " + TABLE_NAME;
 
         //Cur point to a location in your results
         Cursor c = db.rawQuery(qry,null);
         c.moveToFirst();
 
-        while (!c.isAfterLast()) {
-            if(c.getString(c.getColumnIndex(KEY_ID)) != null) {
-                dbSting += c.getString(c.getColumnIndex(KEY_ID));
-                dbSting += "\n";
-            }
-        }
+        dbSting += c.getString(0);
+
         db.close();
         return dbSting;
     }
